@@ -22,7 +22,7 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
                     children: [{
                             id: "cols",
                             type: "text",
-                            label: "1) Titulo Sección",
+                            label: "Titulo Sección",
                             accessKey: "C",
                             style: "width:100px",
                             validate: CKEDITOR.dialog.validate.notEmpty( "El campo de abreviatura no puede estar vacío." ),
@@ -89,7 +89,46 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
                                     this.getValue()) : a.removeAttribute("rows")
                             }
                         }]
+                    },
+
+
+                    {
+                    type: "hbox",
+                    widths: ["50%", "50%"],
+                    children: [{
+                            id: "cols",
+                            type: "text",
+                            label: "Titulo Sección",
+                            accessKey: "C",
+                            style: "width:100px",
+                            validate: CKEDITOR.dialog.validate.notEmpty( "El campo de abreviatura no puede estar vacío." ),
+                            setup: function(a) {
+                                a = a.hasAttribute("cols") && a.getAttribute("cols");
+                                this.setValue(a || "")
+                            },
+                            commit: function(a) {
+                                this.getValue() ? a.setAttribute("cols", this.getValue()) : a.removeAttribute("cols")
+                            }
+                        }, {
+                            id: "rows",
+                            type: "textarea",
+                            label: "Contenido",
+                            accessKey: "R",
+                            style: "width:400px",
+                            //cols: "2",
+                            rows: "2",
+                            validate: CKEDITOR.dialog.validate.notEmpty( "El campo de abreviatura no puede estar vacío." ),
+                            setup: function(a) {
+                                a = a.hasAttribute("rows") && a.getAttribute("rows");
+                                this.setValue(a || "")
+                            },
+                            commit: function(a) {
+                                this.getValue() ? a.setAttribute("rows",
+                                    this.getValue()) : a.removeAttribute("rows")
+                            }
+                        }]
                     }
+
 
 
 
@@ -119,12 +158,7 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
             if ( id )
                 accordion.setAttribute( 'id', id );
 
-            //Creando un nuevo elemento
-            var contenido = editor.document.createElement( 'accordion1' );
-            //contenido.setAttribute( 'title', dialog.getValueOf( 'tab-basic', 'title' ) );
-            //contenido.setText( dialog.getValueOf( 'tab-basic', 'contenido' ) );
-
-            editor.insertElement( accordion, contenido );
+            editor.insertElement( accordion );
         }
     };
 })
