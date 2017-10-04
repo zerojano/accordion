@@ -22,7 +22,7 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
                     children: [{
                             id: "cols",
                             type: "text",
-                            label: "Titulo Sección",
+                            label: "1) Titulo Sección",
                             accessKey: "C",
                             style: "width:100px",
                             validate: CKEDITOR.dialog.validate.notEmpty( "El campo de abreviatura no puede estar vacío." ),
@@ -38,6 +38,8 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
                             type: "textarea",
                             label: "Contenido",
                             accessKey: "R",
+                            //cols: "2",
+                            rows: "2",
                             style: "width:400px",
                             validate: CKEDITOR.dialog.validate.notEmpty( "El campo de abreviatura no puede estar vacío." ),
                             setup: function(a) {
@@ -75,6 +77,8 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
                             label: "Contenido",
                             accessKey: "R",
                             style: "width:400px",
+                            //cols: "2",
+                            rows: "2",
                             validate: CKEDITOR.dialog.validate.notEmpty( "El campo de abreviatura no puede estar vacío." ),
                             setup: function(a) {
                                 a = a.hasAttribute("rows") && a.getAttribute("rows");
