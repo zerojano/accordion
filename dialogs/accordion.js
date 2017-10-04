@@ -24,21 +24,22 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
                     type: "hbox",
                     widths: ["50%", "50%"],
                     children: [{
-                            id: "cols",
+                            id: "seccion_title_1",
                             type: "text",
                             label: "Sección",
                             accessKey: "C",
                             style: "width:100px",
+                            setText: "Sección 1",
                             validate: CKEDITOR.dialog.validate.notEmpty( "El campo de abreviatura no puede estar vacío." ),
-                            setup: function(a) {
+                            /*setup: function(a) {
                                 a = a.hasAttribute("cols") && a.getAttribute("cols");
                                 this.setValue(a || "")
                             },
                             commit: function(a) {
                                 this.getValue() ? a.setAttribute("cols", this.getValue()) : a.removeAttribute("cols")
-                            }
+                            }*/
                         }, {
-                            id: "rows",
+                            id: "seccion_coment_1",
                             type: "textarea",
                             //abel: "Contenido",
                             accessKey: "R",
@@ -60,7 +61,7 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
                     type: "hbox",
                     widths: ["50%", "50%"],
                     children: [{
-                            id: "cols",
+                            id: "seccion_title_2",
                             type: "text",
                             label: "Sección",
                             accessKey: "C",
@@ -74,7 +75,7 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
                                 this.getValue() ? a.setAttribute("cols", this.getValue()) : a.removeAttribute("cols")
                             }
                         }, {
-                            id: "rows",
+                            id: "seccion_coment_2",
                             type: "textarea",
                             //label: "Contenido",
                             accessKey: "R",
@@ -96,7 +97,7 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
                     type: "hbox",
                     widths: ["50%", "50%"],
                     children: [{
-                            id: "cols",
+                            id: "seccion_title_3",
                             type: "text",
                             label: "Sección",
                             accessKey: "C",
@@ -110,7 +111,7 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
                                 this.getValue() ? a.setAttribute("cols", this.getValue()) : a.removeAttribute("cols")
                             }
                         }, {
-                            id: "rows",
+                            id: "seccion_coment_3",
                             type: "textarea",
                             //label: "Contenido",
                             accessKey: "R",
@@ -145,16 +146,17 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
         onOk: function() {
             var dialog = this;
 
-            var accordion = editor.document.createElement( 'ul' );
+            var ul = editor.document.createElement( 'ul' );
             //accordion.setAttribute( 'title', dialog.getValueOf( 'tab-basic', 'title' ) );
-            accordion.setAttribute( 'id', 'acordion_'+Math.round(Math.random()*1000000) );
-            accordion.setText( dialog.getValueOf( 'tab-basic', 'accordion' ) );
+            ul.setAttribute( 'id', 'acordion_'+Math.round(Math.random()*1000000) );
+
+            ul.setText( dialog.getValueOf( 'tab-basic', 'seccion_coment_1' ) );
 
             /*var id = dialog.getValueOf( 'tab-adv', 'id' );
             if ( id )
                 accordion.setAttribute( 'id', id );*/
 
-            editor.insertElement( accordion );
+            editor.insertElement( ul );
         }
     };
 })
