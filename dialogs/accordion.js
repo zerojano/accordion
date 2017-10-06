@@ -23,9 +23,9 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
                             //validate: CKEDITOR.dialog.validate.notEmpty( editor.lang.accordion.msgValidateHeaderColor )
                         }, {
                             type: 'select',
-                            id: 'tipo-of-tabs',
+                            id: 'typeAccordion',
                             label: 'Tipo Acordeon:',
-                            items: [ ['tab'], ['tab2'] ],
+                            items: [ ['tabs'], ['tabs2'] ],
                             'default': 'tab',
                             validate: CKEDITOR.dialog.validate.notEmpty( "No has seleccionado un tipo de acordeon." )
                         }]
@@ -67,7 +67,7 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
             var selection = editor.getSelection();
             var element = selection.getStartElement();
 
-            var type = dialog.getValueOf( 'tab-basic', 'tipo-of-tabs' );
+            var typeAccordion = dialog.getValueOf( 'tab-basic', 'typeAccordion' );
             var numberOfTabs = dialog.getValueOf( 'tab-basic', 'number-of-tabs' );
             var headerColor = dialog.getValueOf( 'tab-basic', 'header-color' );
             var headerColorText = dialog.getValueOf( 'tab-basic', 'header-color-text' );
@@ -78,7 +78,7 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
             var tabsElement = CKEDITOR.dom.element.createFromHtml( tabsHtml );
 
             for ( var i = 1; i <= numberOfTabs; i++ ) {
-              appendTabToElement(editor, dialog, tabsElement, numberOfTabs, i, type, headerColor, headerColorText, headerColorCont, headerColorTextCont);
+              appendTabToElement(editor, dialog, tabsElement, numberOfTabs, i, typeAccordion, headerColor, headerColorText, headerColorCont, headerColorTextCont);
             };
 
             editor.insertElement( tabsElement );
@@ -86,28 +86,32 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
     };
 });
 
-function appendTabToElement(editor, dialog, tabsElement, numberOfTabs, i, type, headerColor, headerColorText, headerColorCont, headerColorTextCont) {
+function appendTabToElement(editor, dialog, tabsElement, numberOfTabs, i, typeAccordion, headerColor, headerColorText, headerColorCont, headerColorTextCont) {
 
-  var tabSetTitle = 'Comentario sección';
-  var tabName       = 'acordeon ' + i;
-  var tabIdentifier = generateTabIdentifer(tabSetTitle, tabName);
+    var tabSetTitle = 'Comentario sección';
+    var tabName       = 'acordeon ' + i;
+    var tabIdentifier = generateTabIdentifer(tabSetTitle, tabName);
+    var tabPanelContentHtml = '<div class="tab-pane-content">' + tabName + ' Content</div>';
 
-  var tabPanelContentHtml = '<div class="tab-pane-content">' + tabName + ' Content</div>';
+    if( typeAccordion == 'tabs' ) {
+        var type='checkbox';
+    }else{
+        var type='radio';
+    }
 
-  var tabHtml = '<div class="'+type+'" style="position:relative;margin-bottom:1px;width:100%;color:#666666;overflow:hidden;"><input id="tab-one" type="checkbox" name="tabs"><label style="background-color:'+headerColor+'; color:'+headerColorText+';"for="tab-one">Seccion '+i+'</label><div class="tab-content" style="background-color:'+headerColorCont+';color:'+headerColorTextCont+';"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p></div></div>';
+    var tabHtml = '<div class="'+typeAccordion+'" style="position:relative;margin-bottom:1px;width:100%;color:#666666;overflow:hidden;"><input id="tab-one" type="'+type+'" name="tabs"><label style="background-color:'+headerColor+'; color:'+headerColorText+';"for="tab-one">Seccion '+i+'</label><div class="tab-content" style="background-color:'+headerColorCont+';color:'+headerColorTextCont+';"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p></div></div>';
 
-  var tabElement = new CKEDITOR.dom.element.createFromHtml( tabHtml );
+    var tabElement = new CKEDITOR.dom.element.createFromHtml( tabHtml );
 
-  if (i == numberOfTabs) {
-    //tabElement.addClass( 'active' );
-    //tabPanelElement.addClass( 'active' );
-  }
+    if (i == numberOfTabs) {
+        //tabElement.addClass( 'active' );
+        //tabPanelElement.addClass( 'active' );
+    }
 
-  var navTabsElement    = tabsElement.findOne( 'ul.mj_acortion' );
+    var navTabsElement    = tabsElement.findOne( 'ul.mj_acortion' );
 
-  navTabsElement.append( tabElement );
+    navTabsElement.append( tabElement );
 }
-
 
 function generateTabIdentifer(tabSetTitle, tabName) {
     return (tabSetTitle + ' ' + tabName).replace(/(\W+|\s+|_|-+)/g, '-').replace(/-+/g, '-').toLowerCase();
