@@ -9,83 +9,54 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
                 label: 'Configuración Básica',
                 elements: [
                     {
-                        type: 'select',
-                        id: 'number-of-tabs',
-                        style: "width:50%",
-                        label: 'Cantidad Secciones',
-                        items: [ ['2'], ['3'], ['4'], ['5'], ['6'], ['7'], ['8'], ['9'] ],
-                        //validate: CKEDITOR.dialog.validate.notEmpty( editor.lang.bootstrapTabs.invalidNumberOfTabs ),
-                        validate: CKEDITOR.dialog.validate.notEmpty( "No has seleccionado la cantidad de secciones." )
-                        /*setup: function( element ) {
-                          var tabsElement = element,
-                              oldNumberOfTabs = tabsElement.find( '.nav.nav-tabs li a.tab-link' ).count();
-                          this.setValue( oldNumberOfTabs );
-                        }*/
-                    },
-                    {
-                        type: 'select',
-                        id: 'tipo-of-tabs',
-                        style: "width:50%",
-                        label: 'Tipo Acordeon',
-                        items: [ ['Unico'], ['Multiple'] ],
-                        validate: CKEDITOR.dialog.validate.notEmpty( "No has seleccionado un tipo de acordeon." )
-                    },
-                    {
-                        type: 'text',
-                        id: 'header-color',
-                        label: 'Color header Sección'
-                    }
-                    /*,
-                    {
                     type: "hbox",
-                    widths: ["25%", "75%"],
+                    widths: ["50%", "50%"],
                     children: [{
-                            id: "seccion_title_1",
-                            type: "text",
-                            label: "Sección",
-                            accessKey: "C",
-                            //style: "width:100px",
-                            setText: "Sección 1",
-                            validate: CKEDITOR.dialog.validate.notEmpty( "El campo de abreviatura no puede estar vacío." ),
-                            //setup: function(a) {
-                            //    a = a.hasAttribute("cols") && a.getAttribute("cols");
-                            //    this.setValue(a || "")
-                            //},
-                            //commit: function(a) {
-                            //    this.getValue() ? a.setAttribute("cols", this.getValue()) : a.removeAttribute("cols")
-                            //}
+                            type: 'select',
+                            id: 'number-of-tabs',
+                            //style: "width:100%",
+                            label: 'Cantidad Secciones:',
+                            items: [ ['2'], ['3'], ['4'], ['5'], ['6'], ['7'], ['8'], ['9'] ],
+                            'default': '2',
+                            //validate: CKEDITOR.dialog.validate.notEmpty( editor.lang.bootstrapTabs.invalidNumberOfTabs ),
+                            validate: CKEDITOR.dialog.validate.notEmpty( "No has seleccionado la cantidad de secciones." )
                         }, {
-                            id: "seccion_coment_1",
-                            type: "textarea",
-                            //abel: "Contenido",
-                            accessKey: "R",
-                            //cols: "2",
-                            rows: "2",
-                            //style: "width:500px",
-                            validate: CKEDITOR.dialog.validate.notEmpty( "El campo de abreviatura no puede estar vacío." ),
-                            //setup: function(a) {
-                            //    a = a.hasAttribute("rows") && a.getAttribute("rows");
-                            //    this.setValue(a || "")
-                            //},
-                            //commit: function(a) {
-                            //    this.getValue() ? a.setAttribute("rows",
-                            //        this.getValue()) : a.removeAttribute("rows")
-                            //}
+                            type: 'select',
+                            id: 'tipo-of-tabs',
+                            label: 'Tipo Acordeon:',
+                            items: [ ['tab'], ['tab2'] ],
+                            'default': 'tab',
+                            validate: CKEDITOR.dialog.validate.notEmpty( "No has seleccionado un tipo de acordeon." )
                         }]
-                    }*/
-                ]
-            }/*,
-            {
-                id: 'tab-adv',
-                label: 'Configuración Acordion',
-                elements: [
-                    {
-                        type: 'text',
-                        id: 'id',
-                        label: 'Color'
+                    },{
+                    type: "hbox",
+                    widths: ["50%", "50%"],
+                    children: [{
+                            type: 'text',
+                            id: 'header-color',
+                            label: 'Background-color Sección:',
+                            'default': '#CCCCCC'
+                        }, {
+                            type: 'text',
+                            id: 'header-color-text',
+                            label: 'Color-text header:',
+                            validate: CKEDITOR.dialog.validate.notEmpty( "No has seleccionado un tipo de acordeon." )
+                        }]
+                    },{
+                    type: "hbox",
+                    widths: ["50%", "50%"],
+                    children: [{
+                            type: 'text',
+                            id: 'content-color',
+                            label: 'Background-color contenido:'
+                        }, {
+                            type: 'text',
+                            id: 'content-color-text',
+                            label: 'Color-text contenido:'
+                        }]
                     }
                 ]
-            }*/
+            }
         ],
         onOk: function() {
             var dialog = this;
@@ -102,10 +73,6 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
             for ( var i = 1; i <= numberOfTabs; i++ ) {
               appendTabToElement(editor, dialog, tabsElement, numberOfTabs, i, type, headerColor);
             };
-
-            /*var id = dialog.getValueOf( 'tab-adv', 'id' );
-            if ( id )
-                accordion.setAttribute( 'id', id );*/
 
             editor.insertElement( tabsElement );
         }
