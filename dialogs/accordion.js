@@ -41,6 +41,7 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
                             type: 'text',
                             id: 'header-color-text',
                             label: 'Color-text header:',
+                            'default': '#FFFFFF',
                             validate: CKEDITOR.dialog.validate.notEmpty( "No has seleccionado un tipo de acordeon." )
                         }]
                     },{
@@ -88,7 +89,7 @@ function appendTabToElement(editor, dialog, tabsElement, numberOfTabs, i, type, 
 
   var tabPanelContentHtml = '<div class="tab-pane-content">' + tabName + ' Content</div>';
 
-  var tabHtml = '<div class="'+type+'" style="position:relative;margin-bottom:1px;width:100%;color:#666666;overflow:hidden;"><input id="tab-one" type="checkbox" name="tabs"><label style="background-color:'+headerColor+'"for="tab-one">Seccion '+i+'</label><div class="tab-content" style=""><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p></div></div>';
+  var tabHtml = '<div class="'+type+'" style="position:relative;margin-bottom:1px;width:100%;color:#666666;overflow:hidden;"><input id="tab-one" type="checkbox" name="tabs"><label style="background-color:'+headerColor+'"for="tab-one">Seccion '+i+'</label><div class="tab-content"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p></div></div>';
 
   var tabElement = new CKEDITOR.dom.element.createFromHtml( tabHtml );
 
