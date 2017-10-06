@@ -50,11 +50,13 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
                     children: [{
                             type: 'text',
                             id: 'content-color',
-                            label: 'Background-color contenido:'
+                            label: 'Background-color contenido:',
+                            'default': '#FFFFFF',
                         }, {
                             type: 'text',
                             id: 'content-color-text',
-                            label: 'Color-text contenido:'
+                            label: 'Color-text contenido:',
+                            'default': '#FFFFFF',
                         }]
                     }
                 ]
@@ -67,13 +69,16 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
 
             var type = dialog.getValueOf( 'tab-basic', 'tipo-of-tabs' );
             var numberOfTabs = dialog.getValueOf( 'tab-basic', 'number-of-tabs' );
-            var headerColor = dialog.getValueOf( 'tab-basic', 'header-color' );        
+            var headerColor = dialog.getValueOf( 'tab-basic', 'header-color' );
+            var headerColorText = dialog.getValueOf( 'tab-basic', 'header-color-text' );
+            var headerColorCont = dialog.getValueOf( 'tab-basic', 'content-color' );
+            var headerColorTextCont = dialog.getValueOf( 'tab-basic', 'content-color-text' );    
             
             var tabsHtml = '<div class="half" style="float: left;width: 95%;padding: 0 1em;"><ul class="mj_acortion" id="accordion"></ul></div>';
             var tabsElement = CKEDITOR.dom.element.createFromHtml( tabsHtml );
 
             for ( var i = 1; i <= numberOfTabs; i++ ) {
-              appendTabToElement(editor, dialog, tabsElement, numberOfTabs, i, type, headerColor);
+              appendTabToElement(editor, dialog, tabsElement, numberOfTabs, i, type, headerColor, headerColorText, headerColorCont, headerColorTextCont);
             };
 
             editor.insertElement( tabsElement );
@@ -81,7 +86,7 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
     };
 });
 
-function appendTabToElement(editor, dialog, tabsElement, numberOfTabs, i, type, headerColor) {
+function appendTabToElement(editor, dialog, tabsElement, numberOfTabs, i, type, headerColor, headerColorText, headerColorCont, headerColorTextCont) {
 
   var tabSetTitle = 'Comentario sección';
   var tabName       = 'acordeon ' + i;
@@ -89,7 +94,7 @@ function appendTabToElement(editor, dialog, tabsElement, numberOfTabs, i, type, 
 
   var tabPanelContentHtml = '<div class="tab-pane-content">' + tabName + ' Content</div>';
 
-  var tabHtml = '<div class="'+type+'" style="position:relative;margin-bottom:1px;width:100%;color:#666666;overflow:hidden;"><input id="tab-one" type="checkbox" name="tabs"><label style="background-color:'+headerColor+'"for="tab-one">Seccion '+i+'</label><div class="tab-content"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p></div></div>';
+  var tabHtml = '<div class="'+type+'" style="position:relative;margin-bottom:1px;width:100%;color:#666666;overflow:hidden;"><input id="tab-one" type="checkbox" name="tabs"><label style="background-color:'+headerColor+'; color:'+headerColorText+';"for="tab-one">Seccion '+i+'</label><div class="tab-content" style="background-color:'+headerColorCont+';color:'+headerColorTextCont+';"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p></div></div>';
 
   var tabElement = new CKEDITOR.dom.element.createFromHtml( tabHtml );
 
