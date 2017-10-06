@@ -12,10 +12,10 @@ Instalación:
 1.- Copiar complemento en la carpeta de Ckeditor/plugins<br>
 <code>
 accordion
-</code><br>
+</code><br><br>
 2.- Agregar en el archivo config.js de Ckeditor<br>
 <code style="background-color: red;">
 config.extraPlugins = 'accordion';
-</code><br>
+</code><br><br>
 3.- Agregar estilo CSS en el archivo config.js de Ckeditor<br>
 <code>config.contentsCss = 'css/acc.css';</code>
