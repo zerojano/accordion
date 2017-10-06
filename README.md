@@ -9,14 +9,13 @@ El complemento ha surgido por la necesidad de integrar sección de acrodion en e
 
 Instalación:
 
-1.- Copiar complemento en la carpeta de Ckeditor/plugins
+1.- Copiar complemento en la carpeta de Ckeditor/plugins<br>
 <code>
 accordion
-</code>
+</code><br>
 2.- Agregar en el archivo config.js de Ckeditor
 <code>
 config.extraPlugins = 'accordion';
-</code>
-<br>
-3.- Agregar estilo CSS en el archivo config.js de Ckeditor
+</code><br>
+3.- Agregar estilo CSS en el archivo config.js de Ckeditor<br>
 <code>config.contentsCss = 'css/acc.css';</code>
