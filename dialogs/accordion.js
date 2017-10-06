@@ -20,6 +20,7 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
                             'default': '2',
                             //validate: CKEDITOR.dialog.validate.notEmpty( editor.lang.bootstrapTabs.invalidNumberOfTabs ),
                             validate: CKEDITOR.dialog.validate.notEmpty( "No has seleccionado la cantidad de secciones." )
+                            //validate: CKEDITOR.dialog.validate.notEmpty( editor.lang.accordion.msgValidateHeaderColor )
                         }, {
                             type: 'select',
                             id: 'tipo-of-tabs',
