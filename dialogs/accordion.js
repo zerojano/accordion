@@ -9,43 +9,28 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
                 label: 'Configuración Básica',
                 elements: [
                     {
-                        type: 'text',
-                        id: 'accordion',
-                        label: 'Abbreviation',
-                        validate: CKEDITOR.dialog.validate.notEmpty( "El campo de abreviatura no puede estar vacío." )
+                        type: 'select',
+                        id: 'number-of-tabs',
+                        style: "width:100%",
+                        label: 'Cantidad Secciones',
+                        items: [ ['2'], ['3'], ['4'], ['5'], ['6'], ['7'], ['8'], ['9'] ],
+                        // Validation for empty values.
+                        //validate: CKEDITOR.dialog.validate.notEmpty( editor.lang.bootstrapTabs.invalidNumberOfTabs ),
+                        setup: function( element ) {
+                          var tabsElement = element,
+                              oldNumberOfTabs = tabsElement.find( '.nav.nav-tabs li a.tab-link' ).count();
+                          this.setValue( oldNumberOfTabs );
+                        }
                     },
-                    {
-                        type: 'text',
-                        id: 'title',
-                        label: 'Explanation',
-                        validate: CKEDITOR.dialog.validate.notEmpty( "Explanation field cannot be empty." )
-                    },
-                    {
-                // Select input field for the number of tabs.
-                // Possible valid values:
-                // hbox, vbox, labeled, button, checkbox, file, fileButton, html, radio, selectElement, textInput, textarea
-                type: 'select',
-                id: 'number-of-tabs',
-                label: 'Cantidad Secciones',
-                items: [ ['2'], ['3'], ['4'], ['5'], ['6'], ['7'], ['8'], ['9'] ],
-                // Validation for empty values.
-                //validate: CKEDITOR.dialog.validate.notEmpty( editor.lang.bootstrapTabs.invalidNumberOfTabs ),
-                setup: function( element ) {
-                  var tabsElement = element,
-                      oldNumberOfTabs = tabsElement.find( '.nav.nav-tabs li a.tab-link' ).count();
-                  this.setValue( oldNumberOfTabs );
-                }
-              },
-
                     {
                     type: "hbox",
-                    widths: ["50%", "50%"],
+                    widths: ["25%", "75%"],
                     children: [{
                             id: "seccion_title_1",
                             type: "text",
                             label: "Sección",
                             accessKey: "C",
-                            style: "width:100px",
+                            /*style: "width:100px",*/
                             setText: "Sección 1",
                             validate: CKEDITOR.dialog.validate.notEmpty( "El campo de abreviatura no puede estar vacío." ),
                             /*setup: function(a) {
@@ -62,7 +47,7 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
                             accessKey: "R",
                             //cols: "2",
                             rows: "2",
-                            style: "width:500px",
+                            /*style: "width:500px",*/
                             validate: CKEDITOR.dialog.validate.notEmpty( "El campo de abreviatura no puede estar vacío." ),
                             /*setup: function(a) {
                                 a = a.hasAttribute("rows") && a.getAttribute("rows");
@@ -73,96 +58,24 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
                                     this.getValue()) : a.removeAttribute("rows")
                             }*/
                         }]
-                    }/*,
-                    {
-                    type: "hbox",
-                    widths: ["50%", "50%"],
-                    children: [{
-                            id: "seccion_title_2",
-                            type: "text",
-                            label: "Sección",
-                            accessKey: "C",
-                            style: "width:100px",
-                            validate: CKEDITOR.dialog.validate.notEmpty( "El campo de abreviatura no puede estar vacío." ),
-                            setup: function(a) {
-                                a = a.hasAttribute("cols") && a.getAttribute("cols");
-                                this.setValue(a || "")
-                            },
-                            commit: function(a) {
-                                this.getValue() ? a.setAttribute("cols", this.getValue()) : a.removeAttribute("cols")
-                            }
-                        }, {
-                            id: "seccion_coment_2",
-                            type: "textarea",
-                            //label: "Contenido",
-                            accessKey: "R",
-                            style: "width:500px",
-                            //cols: "2",
-                            rows: "2",
-                            validate: CKEDITOR.dialog.validate.notEmpty( "El campo de abreviatura no puede estar vacío." ),
-                            setup: function(a) {
-                                a = a.hasAttribute("rows") && a.getAttribute("rows");
-                                this.setValue(a || "")
-                            },
-                            commit: function(a) {
-                                this.getValue() ? a.setAttribute("rows",
-                                    this.getValue()) : a.removeAttribute("rows")
-                            }
-                        }]
-                    },
-                    {
-                    type: "hbox",
-                    widths: ["50%", "50%"],
-                    children: [{
-                            id: "seccion_title_3",
-                            type: "text",
-                            label: "Sección",
-                            accessKey: "C",
-                            style: "width:100px",
-                            validate: CKEDITOR.dialog.validate.notEmpty( "El campo de abreviatura no puede estar vacío." ),
-                            setup: function(a) {
-                                a = a.hasAttribute("cols") && a.getAttribute("cols");
-                                this.setValue(a || "")
-                            },
-                            commit: function(a) {
-                                this.getValue() ? a.setAttribute("cols", this.getValue()) : a.removeAttribute("cols")
-                            }
-                        }, {
-                            id: "seccion_coment_3",
-                            type: "textarea",
-                            //label: "Contenido",
-                            accessKey: "R",
-                            style: "width:500px",
-                            //cols: "2",
-                            rows: "2",
-                            validate: CKEDITOR.dialog.validate.notEmpty( "El campo de abreviatura no puede estar vacío." ),
-                            setup: function(a) {
-                                a = a.hasAttribute("rows") && a.getAttribute("rows");
-                                this.setValue(a || "")
-                            },
-                            commit: function(a) {
-                                this.getValue() ? a.setAttribute("rows",
-                                    this.getValue()) : a.removeAttribute("rows")
-                            }
-                        }]
-                    }*/
+                    }
                 ]
-            }/*,
+            },
             {
                 id: 'tab-adv',
-                label: 'Configuración Básica',
+                label: 'Configuración Acordion',
                 elements: [
                     {
                         type: 'text',
                         id: 'id',
-                        label: 'Id'
+                        label: 'Color'
                     }
                 ]
-            }*/
+            }
         ],
         onOk: function() {
             var dialog = this;
-
+            var type = 'tab2';
             var selection = editor.getSelection();
             var element = selection.getStartElement();
 
@@ -176,11 +89,12 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
             
             //listaAcordeon.setText( dialog.getValueOf( 'tab-basic', 'seccion_coment_1' ) );
 
-            var tabsHtml = '<div class="lista-acordeon"><ul class="mj_acortion" id="accordion"></ul></div>';
+            //var tabsHtml = '<div class="lista-acordeon"><ul class="mj_acortion" id="accordion"></ul></div>';
+            var tabsHtml = '<div class="half" style="float: left;width: 95%;padding: 0 1em;"><ul class="mj_acortion" id="accordion"></ul></div>';
             var tabsElement = CKEDITOR.dom.element.createFromHtml( tabsHtml );
 
             for ( var i = 1; i <= numberOfTabs; i++ ) {
-              appendTabToElement(editor, dialog, tabsElement, numberOfTabs, i);
+              appendTabToElement(editor, dialog, tabsElement, numberOfTabs, i, type);
             };
 
             /*var id = dialog.getValueOf( 'tab-adv', 'id' );
@@ -192,7 +106,7 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
     };
 });
 
-function appendTabToElement(editor, dialog, tabsElement, numberOfTabs, i) {
+function appendTabToElement(editor, dialog, tabsElement, numberOfTabs, i, type) {
 
   // Get the new tab-set-title from the dialog input.
   var tabSetTitle   = dialog.getValueOf( 'tab-basic', 'seccion_coment_1' );
@@ -207,9 +121,10 @@ function appendTabToElement(editor, dialog, tabsElement, numberOfTabs, i) {
   // Template html for a tab and tabPanel (http://getbootstrap.com/javascript/#tabs-examples).
   //var tabHtml             = '<li><a href="#' + tabIdentifier + '" aria-controls="' + tabIdentifier + '" >' + tabName + ' Name</a></li>';
   //var tabPanelHtml        = '<div role="tabpanel" class="tab-pane" id="' + tabIdentifier + '">' + tabPanelContentHtml + '</div>';
+  //<div class="mj_accordion_item active">Sección #'+ i +'</div><div class="mj_accordion_content">Contenido '+ i +'</div>';
 
+  var tabHtml = '<div class="'+type+'" style="position:relative;margin-bottom:1px;width:100%;color:#666666;overflow:hidden;"><input id="tab-one" type="checkbox" name="tabs"><label for="tab-one">Seccion '+i+'</label><div class="tab-content" style=""><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p></div></div>';
 
-  var tabHtml = '<li><div class="mj_accordion_item active">Sección #'+ i +'</div><div class="mj_accordion_content active">Contenido '+ i +'</div></li>';
 
   var tabElement      = new CKEDITOR.dom.element.createFromHtml( tabHtml );
       //tabPanelElement = new CKEDITOR.dom.element.createFromHtml( tabPanelHtml );
