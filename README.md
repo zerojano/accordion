@@ -7,5 +7,5 @@ Complemento para Ckeditor 4.0
 
 Configuración archivo config.js del Ckeditor
 
-config.contentsCss = 'css/acc_ckeditor.css';  
+<b>config.contentsCss = 'css/acc_ckeditor.css';  </b>
 config.extraPlugins = 'accordion';  
