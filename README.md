@@ -18,4 +18,4 @@ accordion
 config.extraPlugins = 'accordion';
 </code><br><br>
 3.- Agregar estilo CSS en el archivo config.js de Ckeditor<br>
-<code>config.contentsCss = 'css/acc.css';</code>
+<code>config.contentsCss = 'tu/ruta/css/acc_ckeditor.css';</code>
