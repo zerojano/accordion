@@ -6,19 +6,19 @@ h1 {
   text-align: center;
 }*/
 
-.half {
+/*.half {
   float: left;
   width: 95%;
   padding: 0 1em;
-}
+}*/
 /* Acordeon styles */
-.tab {
+/*.tab {
   position: relative;
   margin-bottom: 1px;
   width: 100%;
   color: #fff;
   overflow: hidden;
-}
+}*/
 input {
   position: absolute;
   opacity: 0;
