@@ -99,7 +99,7 @@ function appendTabToElement(editor, dialog, tabsElement, numberOfTabs, i, typeAc
         var type='radio';
     }
 
-    var tabHtml = '<div class="'+typeAccordion+'" style="position:relative;margin-bottom:1px;width:100%;color:#666666;overflow:hidden;"><input id="tab-one" type="'+type+'" name="tabs"><label style="background-color:'+headerColor+'; color:'+headerColorText+';"for="tab-one">Seccion '+i+'</label><div class="tab-content" style="background-color:'+headerColorCont+';color:'+headerColorTextCont+';"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p></div></div>';
+    var tabHtml = '<div class="'+typeAccordion+'" style="position:relative;margin-bottom:1px;width:100%;color:#666666;overflow:hidden;"><input id="tab-'+i+'" type="'+type+'" name="tabs"><label style="background-color:'+headerColor+'; color:'+headerColorText+';"for="tab-'+i+'">Seccion '+i+'</label><div class="tab-content" style="background-color:'+headerColorCont+';color:'+headerColorTextCont+';"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p></div></div>';
 
     var tabElement = new CKEDITOR.dom.element.createFromHtml( tabHtml );
 
