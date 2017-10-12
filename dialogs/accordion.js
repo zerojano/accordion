@@ -74,8 +74,10 @@ CKEDITOR.dialog.add( 'accordionDialog', function( editor ) {
             var headerColorCont = dialog.getValueOf( 'tab-basic', 'content-color' );
             var headerColorTextCont = dialog.getValueOf( 'tab-basic', 'content-color-text' );    
             
+            //var cssHtml = '<style>.tab-content {max-height:0;overflow: hidden;-webkit-transition:max-height .35s;-o-transition:max-height .35s;transition:max-height .35s;}input:checked ~ .tab-content {max-height:10em;}label::after {position: absolute;right: 0;top: 0;display: block;width: 3em;height: 3em;line-height: 3;text-align: center;-webkit-transition: all .35s;-o-transition: all .35s;transition: all .35s;}input[type=checkbox] + label::after {content: "+";}input[type=radio] + label::after { content: "\25BC";}input[type=checkbox]:checked + label::after {transform:rotate(315deg);}input[type=radio]:checked + label::after { transform:rotateX(180deg);}</style>';
             var tabsHtml = '<div class="half" style="float: left;width: 95%;padding: 0 1em;"><ul class="mj_acortion" id="accordion"></ul></div>';
             var tabsElement = CKEDITOR.dom.element.createFromHtml( tabsHtml );
+            //var cssElement = CKEDITOR.dom.element.createFromHtml( cssHtml );
 
             for ( var i = 1; i <= numberOfTabs; i++ ) {
               appendTabToElement(editor, dialog, tabsElement, numberOfTabs, i, typeAccordion, headerColor, headerColorText, headerColorCont, headerColorTextCont);
@@ -99,7 +101,7 @@ function appendTabToElement(editor, dialog, tabsElement, numberOfTabs, i, typeAc
         var type='radio';
     }
 
-    var tabHtml = '<div class="'+typeAccordion+'" style="position:relative;margin-bottom:1px;width:100%;color:#666666;overflow:hidden;"><input id="tab-'+i+'" type="'+type+'" name="tabs"><label style="background-color:'+headerColor+'; color:'+headerColorText+';"for="tab-'+i+'">Seccion '+i+'</label><div class="tab-content" style="background-color:'+headerColorCont+';color:'+headerColorTextCont+';"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p></div></div>';
+    var tabHtml = '<div class="'+typeAccordion+'" style="position:relative;margin-bottom:1px;width:100%;color:#666666;overflow:hidden;"><input id="tab-'+i+'" type="'+type+'" name="tabs" style="position: absolute !important;opacity: 0 !important; z-index: -1 !important;"><label style="  position: relative;display: block;padding: 0 0 0 1em;font-weight: bold;line-height: 3;cursor: pointer;background-color:'+headerColor+'; color:'+headerColorText+';"for="tab-'+i+'">Sección '+i+'</label><div class="tab-content" style="background-color:'+headerColorCont+';color:'+headerColorTextCont+';"><p style="margin: 1em;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p></div></div>';
 
     var tabElement = new CKEDITOR.dom.element.createFromHtml( tabHtml );
 
