@@ -6,7 +6,8 @@
   transition: max-height .35s;
 }
 input:checked ~ .tab-content {
-  max-height: 10em;
+  /*max-height: 10em;*/
+  max-height: 100%;
 }
 label::after {
   position: absolute;
